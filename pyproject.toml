@@ -1,0 +1,97 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "docuquery-rag"
+version = "1.0.0"
+description = "Next-Generation Domain-Specific RAG Pipeline — production-ready, MLOps-driven architecture"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "DocuQuery Team" }]
+license = { text = "MIT" }
+
+dependencies = [
+    # --- Core Framework ---
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "sse-starlette>=2.1.0",
+    "pydantic>=2.8.0",
+    "pydantic-settings>=2.4.0",
+    "python-multipart>=0.0.9",
+    "httpx>=0.27.0",
+
+    # --- LangChain Ecosystem ---
+    "langchain>=0.3.0",
+    "langchain-community>=0.3.0",
+    "langchain-core>=0.3.0",
+    "langchain-openai>=0.2.0",
+
+    # --- Vector Stores & Retrieval ---
+    "faiss-cpu>=1.8.0",
+    "pinecone>=5.0.0",
+    "rank-bm25>=0.2.2",
+    "flashrank>=0.2.9",
+
+    # --- Embeddings ---
+    "sentence-transformers>=3.1.0",
+    "transformers>=4.44.0",
+    "torch>=2.4.0",
+    "einops>=0.8.0",
+
+    # --- MLflow & Evaluation ---
+    "mlflow>=2.16.0",
+    "ragas>=0.2.0",
+    "datasets>=3.0.0",
+
+    # --- Document Processing ---
+    "pypdf>=4.3.0",
+    "python-docx>=1.1.0",
+    "unstructured>=0.15.0",
+    "tiktoken>=0.7.0",
+    "nltk>=3.9.0",
+
+    # --- Utilities ---
+    "numpy>=1.26.0",
+    "pandas>=2.2.0",
+    "tenacity>=9.0.0",
+    "structlog>=24.4.0",
+    "python-dotenv>=1.0.0",
+    "rich>=13.8.0",
+    "typer>=0.12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=5.0.0",
+    "mypy>=1.11.0",
+    "ruff>=0.6.0",
+    "httpx>=0.27.0",
+    "faker>=30.0.0",
+]
+
+[project.scripts]
+docuquery = "app.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "--cov=app --cov-report=term-missing"

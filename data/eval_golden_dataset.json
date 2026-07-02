@@ -1,0 +1,47 @@
+[
+  {
+    "user_input": "What is Late Chunking and how does it improve RAG retrieval?",
+    "response": "Late Chunking is a technique that passes the entire document through the embedding model before defining chunk boundaries. This ensures every chunk's vector reflects global document context via transformer self-attention. Compared to naive chunking, it eliminates pronoun loss (e.g., 'it' correctly points to its antecedent) and demonstrates significant average relative improvement on long-document retrieval benchmarks. [Source: rag_blueprint.txt]",
+    "retrieved_contexts": [
+      "Late Chunking flips the traditional pipeline. Leveraging modern long-context embedding models, the system passes the entire document through the transformer model first. This forward pass generates token-level embeddings conditioned by the global context.",
+      "Because the underlying token representations were generated with global attention, every resulting chunk embedding implicitly contains the semantic footprint of the full document. A chunk containing 'it' now mathematically points to the subject defined three paragraphs prior."
+    ],
+    "reference": "Late Chunking processes the full document through the embedding model before chunking, preserving global context in every chunk vector via transformer self-attention."
+  },
+  {
+    "user_input": "Why should I use Hybrid Search instead of pure vector search?",
+    "response": "Pure dense vector embeddings excel at semantic similarity but struggle with exact keyword matching — critical for technical domains with part numbers, legal statutes, or medical acronyms. Hybrid Search combines BM25 sparse retrieval (exact lexical matching) with dense vector search (semantic understanding) using Reciprocal Rank Fusion. This ensures both conceptual synonyms and exact terminology are surfaced. In financial domains, a 70% BM25 / 30% dense split often outperforms 50/50 configurations. [Source: rag_blueprint.txt]",
+    "retrieved_contexts": [
+      "A superior RAG implementation deploys a Hybrid Search architecture that processes incoming queries through both retrieval mechanisms in parallel. BM25 excels at exact lexical matching while dense embeddings capture semantic relationships.",
+      "The fusion algorithm allows developers to assign explicit weights to the sparse and dense retrievers. For financial or operational domains where exact figures are paramount, a 70% BM25 weighting often outcompetes 50/50 configurations."
+    ],
+    "reference": "Hybrid Search combines BM25 sparse retrieval for exact keyword matching with dense vector search for semantic understanding, merged via RRF with configurable weights."
+  },
+  {
+    "user_input": "What is the difference between FAISS and Pinecone?",
+    "response": "FAISS is an open-source C++ library optimised for raw algorithmic performance and low-level control, best suited for local prototyping and single-node deployments. It has no native metadata storage and requires manual persistence. Pinecone is a fully managed cloud-native vector database with first-class metadata filtering, auto-scaling, and built-in CRUD semantics — optimal for mission-critical SaaS and high-concurrency enterprise environments. [Source: rag_blueprint.txt]",
+    "retrieved_contexts": [
+      "FAISS: Open-source C++ library with Python bindings. Primary strength: raw algorithmic performance, zero infrastructure cost. No native metadata storage; requires parallel key-value stores.",
+      "Pinecone: Fully managed, cloud-native vector database SaaS. Primary strength: serverless auto-scaling, zero operational overhead. First-class metadata filtering built directly into the query execution engine."
+    ],
+    "reference": "FAISS is fast and open-source but lacks native metadata support; Pinecone is managed and scalable with built-in metadata filtering."
+  },
+  {
+    "user_input": "How does a cross-encoder reranker improve retrieval precision?",
+    "response": "A cross-encoder evaluates the query and each candidate document jointly by processing their concatenation through all transformer layers, computing deep cross-attention between all tokens. Unlike bi-encoders that embed query and document separately, cross-encoders ask 'does this document actually answer this specific question?' In practice, the EnsembleRetriever fetches 40 candidates which are then aggressively filtered to the top 5 by the cross-encoder, dramatically reducing prompt noise and hallucination risk. [Source: rag_blueprint.txt]",
+    "retrieved_contexts": [
+      "A cross-encoder model evaluates the user query and each candidate document jointly. Unlike bi-encoders, cross-encoders process the concatenation of the query and document, computing deep cross-attention between all tokens.",
+      "In practice, the EnsembleRetriever fetches the top 40 documents which are then passed to the cross-encoder to be filtered down to the top 5 most relevant documents for language model ingestion."
+    ],
+    "reference": "Cross-encoders jointly process query and document through all transformer layers, yielding calibrated relevance scores far more accurate than bi-encoder cosine similarity."
+  },
+  {
+    "user_input": "Why is it dangerous to register LangChain callbacks globally in a FastAPI server?",
+    "response": "Registering callbacks globally in a concurrent web server leads to cross-tenant trace bleed, where User A's retrieval logs erroneously appear in User B's execution trace due to shared global state. The correct pattern is to instantiate request-scoped callbacks via LangChain's RunnableConfig at the exact point of invocation, ensuring each concurrent API request maintains a strictly isolated execution context with accurate telemetry for token consumption, model latency, and error tracking. [Source: rag_blueprint.txt]",
+    "retrieved_contexts": [
+      "Registering callbacks globally or at the component instantiation level is a dangerous anti-pattern in concurrent web servers. It invariably leads to cross-tenant trace bleed, where user A's retrieval logs appear in user B's execution trace.",
+      "The FastAPI endpoint must instantiate request-scoped callbacks via LangChain's RunnableConfig at the exact point of invocation, ensuring every concurrent API request maintains a strictly isolated execution context."
+    ],
+    "reference": "Global callbacks cause cross-tenant trace bleed in concurrent servers; always use request-scoped RunnableConfig callbacks."
+  }
+]
