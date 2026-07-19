@@ -275,6 +275,16 @@ RAG/
 
 ---
 
+## AI Engineering Notes
+
+Short, source-backed notes that document the production RAG and agentic design decisions behind this project:
+
+- [Retrieval Quality Gates](docs/ai-insights/2026-07-15-retrieval-quality-gates.md)
+- [Action Contracts for Agentic RAG](docs/ai-insights/2026-07-17-agentic-rag-action-contracts.md)
+- [MCP Tool Boundaries for Evidence-Aware Agents](docs/ai-insights/2026-07-19-mcp-tool-boundaries.md)
+
+---
+
 ## Phase 5: Migrating to Pinecone
 
 ```bash
