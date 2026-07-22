@@ -282,6 +282,7 @@ Short, source-backed notes that document the production RAG and agentic design d
 - [Retrieval Quality Gates](docs/ai-insights/2026-07-15-retrieval-quality-gates.md)
 - [Action Contracts for Agentic RAG](docs/ai-insights/2026-07-17-agentic-rag-action-contracts.md)
 - [MCP Tool Boundaries for Evidence-Aware Agents](docs/ai-insights/2026-07-19-mcp-tool-boundaries.md)
+- [RAG Evidence Tracing: Debug the Answer Back to the Chunk](docs/ai-insights/2026-07-22-rag-evidence-tracing.md)
 
 ---
 
