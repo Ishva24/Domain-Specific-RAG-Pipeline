@@ -140,7 +140,16 @@ docuquery serve --port 8000
 #   Health:      http://localhost:8000/api/v1/health
 ```
 
-### 6. Query the RAG Pipeline
+### 6. Build the Package
+
+```bash
+# Produce a source distribution and wheel in dist/
+uv build
+```
+
+This is the fastest way to verify the project still packages cleanly before pushing documentation or code changes.
+
+### 7. Query the RAG Pipeline
 
 **Streaming (SSE):**
 ```bash
@@ -281,6 +290,7 @@ Short, source-backed notes that document the production RAG and agentic design d
 
 - [Retrieval Quality Gates](docs/ai-insights/2026-07-15-retrieval-quality-gates.md)
 - [Action Contracts for Agentic RAG](docs/ai-insights/2026-07-17-agentic-rag-action-contracts.md)
+- [RAG Evaluation Drift](docs/ai-insights/2026-07-18-rag-evaluation-drift.md)
 - [MCP Tool Boundaries for Evidence-Aware Agents](docs/ai-insights/2026-07-19-mcp-tool-boundaries.md)
 - [RAG Evidence Tracing: Debug the Answer Back to the Chunk](docs/ai-insights/2026-07-22-rag-evidence-tracing.md)
 
