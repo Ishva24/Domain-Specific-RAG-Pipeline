@@ -294,6 +294,7 @@ Short, source-backed notes that document the production RAG and agentic design d
 - [MCP Tool Boundaries for Evidence-Aware Agents](docs/ai-insights/2026-07-19-mcp-tool-boundaries.md)
 - [Trace-to-Eval Loop for RAG](docs/ai-insights/2026-07-21-trace-to-eval-loop.md)
 - [RAG Evidence Tracing: Debug the Answer Back to the Chunk](docs/ai-insights/2026-07-22-rag-evidence-tracing.md)
+- [RAG Context Trust Tiers: Keep Retrieved Text as Data](docs/ai-insights/2026-07-23-rag-context-trust-tiers.md)
 
 ---
 
